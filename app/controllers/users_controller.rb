@@ -17,10 +17,11 @@ class UsersController < ApplicationController
   end
 
   def update
+    @books = Book.all
     if @user.update(user_params)
       redirect_to user_path(@user), notice: "You have updated user successfully."
     else
-      render "show"
+      render :edit
     end
   end
 

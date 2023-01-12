@@ -4,7 +4,9 @@
       <th></th>
       <th>Title</th>
       <th>Opinion</th>
-      <th colspan="3"></th>
+      <th></th>
+      <th></th>
+      <th colspan="5"></th>
     </tr>
   </thead>
   <tbody>
@@ -16,6 +18,13 @@
         </td>
         <td><%= link_to book.title,book %></td>
         <td><%= book.body %></td>
+        <td>
+          <%= form_with model:favorite,local:true do |f| %>
+            <%= link_to favorites_path do %>
+              <i class="fas fa-heart"></i>0
+            <% end %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>

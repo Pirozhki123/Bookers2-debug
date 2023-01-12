@@ -19,6 +19,8 @@ class BooksController < ApplicationController
   def index
     @book = Book.new
     @books = Book.all
+    @favorite = Favorite.new
+    @favorites = Favorite.all
   end
 
   def create

@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   # belongs_to :books
   has_many :books, dependent: :destroy
+  belongs_to :favorite
   has_one_attached :profile_image
 
   validates :name, presence: true, length: {in:2..20}, uniqueness: true

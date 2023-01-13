@@ -20,9 +20,12 @@
         <td><%= book.body %></td>
         <td>
           <%= form_with model:favorite,local:true do |f| %>
-            <%= link_to favorites_path do %>
-              <i class="fas fa-heart"></i>0
-            <% end %>
+
+              <%= link_to favorites_path, method: :post do %>
+                <i class="fas fa-heart"></i>
+              <% end %>
+
+
           <% end %>
         </td>
       </tr>

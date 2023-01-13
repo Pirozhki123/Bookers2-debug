@@ -17,12 +17,24 @@
           </td>
           <td><%= link_to @book.title, @book %></td>
           <td><%= @book.body %></td>
+          <td>
+            <i class="fas fa-heart"></i>X
+          </td>
+          <td>コメント数:X</td>
           <% if @book.user == current_user %>
             <td><%= link_to 'Edit', edit_book_path(@book), class: "btn btn-sm btn-success" %></td>
             <td><%= link_to 'Destroy', @book, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>
           <% end %>
         </tr>
       </table>
+      <%= form_with model:@book_comment, local:true do |f| %>
+      <div class="form-group">
+        <%= f.text_area :comment, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.submit "送信" %>
+      </div>
+      <% end %>
     </div>
   </div>
 </div>

@@ -18,18 +18,30 @@
           <td><%= link_to @book.title, @book %></td>
           <td><%= @book.body %></td>
           <td>
-            <i class="fas fa-heart"></i>X
+            <% if @book.favorited_by?(current_user) %>
+              <p>
+                <%= link_to book_favorites_path(@book), method: :delete, class: "text-danger" do %>
+                  <i class="fas fa-heart"></i><%= @book.favorites.count %>
+                <% end %>
+              </p>
+              <% else %>
+              <p>
+                <%= link_to book_favorites_path(@book), method: :post do %>
+                  <i class="fas fa-heart"></i><%= @book.favorites.count %>
+                <% end %>
+              </p>
+            <% end %>
           </td>
-          <td>コメント数:X</td>
+          <td>コメント数:</td>
           <% if @book.user == current_user %>
             <td><%= link_to 'Edit', edit_book_path(@book), class: "btn btn-sm btn-success" %></td>
             <td><%= link_to 'Destroy', @book, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>
           <% end %>
         </tr>
       </table>
-      <%= form_with model:@book_comment, local:true do |f| %>
+      <%= form_with model: [@book, @book_comment] do |f| %>
       <div class="form-group">
-        <%= f.text_area :comment, class: 'form-control' %>
+        <%= f.text_area :comment, rows: '5', class: 'form-control' %>
       </div>
       <div class="form-group">
         <%= f.submit "送信" %>

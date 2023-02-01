@@ -13,5 +13,3 @@ class FavoritesController < ApplicationController
     redirect_back fallback_location: books_path
   end
 end
-
-

@@ -33,7 +33,7 @@ class BooksController < ApplicationController
       redirect_to book_path(@book), notice: "You have created book successfully."
     else
       @books = Book.all
-      render 'index'
+      render "index"
     end
   end
 
@@ -57,8 +57,7 @@ class BooksController < ApplicationController
   end
 
   private
-
-  def book_params
-    params.require(:book).permit(:title, :body)
-  end
+    def book_params
+      params.require(:book).permit(:title, :body)
+    end
 end

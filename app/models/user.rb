@@ -8,6 +8,12 @@ class User < ApplicationRecord
   has_many :books, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :book_comments, dependent: :destroy
+  # ここから中間テーブル
+  has_many :follower, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
+  has_many :followings, through: :relationships, source: :follower
+  has_many :followed, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
+  has_many :followers, through: :relationship, source: :followed
+  # 中間テーブルここまで
   has_one_attached :profile_image
 
   validates :name, presence: true, length: { in: 2..20 }, uniqueness: true

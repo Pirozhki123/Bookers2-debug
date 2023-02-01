@@ -12,7 +12,7 @@ class User < ApplicationRecord
   has_many :follower, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
   has_many :followings, through: :relationships, source: :follower
   has_many :followed, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
-  has_many :followers, through: :relationship, source: :followed
+  has_many :followers, through: :relationships, source: :followed
   # 中間テーブルここまで
   has_one_attached :profile_image
 

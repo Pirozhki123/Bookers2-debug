@@ -26,6 +26,16 @@ class UsersController < ApplicationController
     end
   end
 
+  def followings
+    user = User.find(params[:id])
+    @users = user.followings #userに結びついているフォロー全員を取得
+  end
+
+  def followed
+    user = User.find(params[:id])
+    @users = user.followed #userに結びついているフォロワー全員を取得
+  end
+
   private
     def user_params
       params.require(:user).permit(:name, :introduction, :profile_image)

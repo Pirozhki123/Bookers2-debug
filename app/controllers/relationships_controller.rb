@@ -8,7 +8,7 @@ class RelationshipsController < ApplicationController
 
   def destroy
     following = current_user.relationships.find_by(follower_id: params[:user_id]) #followingにログイン中のユーザーIDとリムーブするユーザーIDを格納
-    following.destroy #
+    following.destroy #削除
     redirect_to request.referrer || root_path #以前のパスを再度リクエスト。なければルートパスへ
   end
 

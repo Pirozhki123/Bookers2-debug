@@ -31,9 +31,9 @@ class UsersController < ApplicationController
     @users = user.followings #userに結びついているフォロー全員を取得
   end
 
-  def followed
+  def followers
     user = User.find(params[:id])
-    @users = user.followed #userに結びついているフォロワー全員を取得
+    @users = user.followers #userに結びついているフォロワー全員を取得
   end
 
   private

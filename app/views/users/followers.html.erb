@@ -2,7 +2,11 @@
   <div class="row">
     <div class="col-md-8 offset-md-1">
       <h2>Follower Users</h2>
-      <%= render 'index',users: @users %>
+      <% if @users.present? %>
+        <%= render 'index',users: @users %>
+      <% else %>
+        <a>ユーザーはいません</a>
+      <% end %>
     </div>
   </div>
 </div>

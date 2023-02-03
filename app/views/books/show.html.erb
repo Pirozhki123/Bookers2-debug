@@ -27,15 +27,9 @@
           <% end %>
         </tr>
       </table>
-      <%= render "/books/book_comments", book: @book %>
-      <%= form_with model: [@book, @book_comment] do |f| %>
-      <div class="form-group">
-        <%= f.text_area :comment, rows: '5', class: 'form-control' %>
+      <div id="comments">
+        <%= render "/books/book_comments", book: @book, book_comment: @book_comment %>
       </div>
-      <div class="form-group">
-        <%= f.submit "送信" %>
-      </div>
-      <% end %>
     </div>
   </div>
 </div>

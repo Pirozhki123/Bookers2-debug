@@ -4,6 +4,7 @@ class BookCommentsController < ApplicationController
     @book_comment = current_user.book_comments.new(book_comment_params)
     @book_comment.book_id = @book.id
     @book_comment.save
+    @book_comment = current_user.book_comments.new(book_comment_params)
     # render 'book_comments/create'
     # redirect_to book_path(book)
   end

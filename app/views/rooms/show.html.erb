@@ -1,0 +1,23 @@
+<div class='container px-5 px-sm-0'>
+  <div class='row'>
+    <div class='col-md-3'>
+      <h2><%= "#{}さんとのチャット" %></h2>
+      <div class="chat">
+        <% if @messages.present? %>
+          <% @messages.each do |m| %>
+            <div class="chat_message">
+              <strong><%= m.content %></strong><br>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="posts">
+        <%= form_with model: @message do |f| %>
+          <%= f.text_field :content, class: "form-text-field" %>
+          <%= f.hidden_field :room_id, value: @room.id %>
+          <%= f.submit "投稿", class: 'form-submit' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

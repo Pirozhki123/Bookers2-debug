@@ -14,6 +14,10 @@ class User < ApplicationRecord
   has_many :followed, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
   has_many :followers, through: :followed, source: :follower
   # 中間テーブルここまで
+  # ここからDM
+  has_many :entries, dependent: :destroy
+  has_many :messages, dependent: :destroy
+  # ここまでDM
   has_one_attached :profile_image
 
   validates :name, presence: true, length: { in: 2..20 }, uniqueness: true

@@ -13,6 +13,7 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
     @user = @book.user
     @books = Book.all
+    # @books = Book.favorites.count.order
     @book_new = Book.new
     # @favorite = Favorite.new
     # @favorite_book = Favorite.find(params[:book_id])

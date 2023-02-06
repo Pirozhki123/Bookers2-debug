@@ -18,6 +18,9 @@ class User < ApplicationRecord
   has_many :entries, dependent: :destroy
   has_many :messages, dependent: :destroy
   # ここまでDM
+  # ここから閲覧数
+  has_many :view_counts, dependent: :destroy
+  # ここまで閲覧数
   has_one_attached :profile_image
 
   validates :name, presence: true, length: { in: 2..20 }, uniqueness: true

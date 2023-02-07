@@ -22,8 +22,17 @@ class BooksController < ApplicationController
   end
 
   def index
+    if params[:latest]
+      @books = Book.latest
+    elsif params[:old]
+      @books = Book.old
+    elsif params[:evaluation_count]
+      @books = Book.evaluation_count
+    else
+      @books = Book.all.sort { |a, b| b.favorites.count <=> a.favorites.count }
+    end
+
     @book = Book.new
-    @books = Book.all.sort { |a, b| b.favorites.count <=> a.favorites.count }
     @favorite = Favorite.new
     @favorites = Favorite.all
   end

@@ -8,6 +8,10 @@ class Book < ApplicationRecord
 
   is_impressionable counter_cache: true
 
+  scope :latest, -> {order(created_at: :desc)}
+  scope :old, -> {order(created_at: :asc)}
+  scope :evaluation_count, -> {order(evaluation: :desc)}
+
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end

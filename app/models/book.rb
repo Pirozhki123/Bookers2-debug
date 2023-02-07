@@ -2,6 +2,8 @@ class Book < ApplicationRecord
   belongs_to :user, optional: true
   has_many :favorites, dependent: :destroy
   has_many :book_comments, dependent: :destroy
+  has_many :book_tag_relations, dependent: :destroy #中間テーブルに関連付け
+  has_many :tags, through: :book_tag_relations, dependent: :destroy #throughで中間テーブルを介してtagsに関連付け
 
   validates :title, presence: true
   validates :body, presence: true, length: { maximum: 200 }

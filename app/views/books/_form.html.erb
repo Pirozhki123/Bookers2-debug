@@ -7,21 +7,41 @@
     <%= f.label :opinion %>
     <%= f.text_area :body, class: 'form-control book_body' %>
   </div>
-  <div id="post_raty">
-    <label>Rate</label>
-  </div>
+  <% if current_page?("/books/#{book.id}/edit") %>
+    <div id="edit_raty">
+      <label>Rate</label>
+    </div>
+    <script>
+      // scriptファイルをどのidの部分に配置するかを指定
+      $('#edit_raty').empty();
+      var elem = document.querySelector('#edit_raty');
+      var opt = {
+        starOn: "<%= asset_path('star-on.png') %>",
+        starOff: "<%= asset_path('star-off.png') %>",
+        starHalf: "<%=asset_path('star-half.png') %>",
+        readOnly: true,
+        score: <%= book.evaluation %>,
+       };
+      raty(elem,opt);
+    </script>
+  <% else %>
+    <div id="post_raty">
+      <label>Rate</label>
+    </div>
+    <script>
+      // scriptファイルをどのidの部分に配置するかを指定
+      $('#post_raty').empty();
+      var elem = document.querySelector('#post_raty');
+      var opt = {
+        starOn: "<%= asset_path('star-on.png') %>",
+        starOff: "<%= asset_path('star-off.png') %>",
+        starHalf: "<%=asset_path('star-half.png') %>",
+        scoreName: 'book[evaluation]' //登録するモデル名とカラム名を記述
+       };
+      raty(elem,opt);
+    </script>
+  <% end %>
   <div class="form-group">
     <%= f.submit class: 'btn btn-success' %>
   </div>
 <% end %>
-<script>
-  //scriptファイルをどのID部分に配置するか指定
-  let elem = document.querySelector('#post_raty');
-  let opt = {
-    starOn: "<%= asset_path('star-on.png') %>",
-    starOff: "<%= asset_path('star-off.png') %>",
-    starHalf: "<%=asset_path('star-half.png') %>",
-    scoreName: 'book[ebaluation]' //登録するモデル名とカラム名を記述
-  };
-  raty(elem,opt);
-</script>

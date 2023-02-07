@@ -21,6 +21,9 @@
             <%= render '/favorites/favorite', book: @book %>
           </td>
           <td>コメント数:<%= @book.book_comments.count %></td>
+          <td>
+            <div id="show_raty"></div>
+          </td>
           <% if @book.user == current_user %>
             <td><%= link_to 'Edit', edit_book_path(@book), class: "btn btn-sm btn-success" %></td>
             <td><%= link_to 'Destroy', @book, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>
@@ -33,3 +36,17 @@
     </div>
   </div>
 </div>
+<script>
+  // scriptファイルをどのidの部分に配置するかを指定
+  $('#show_raty').empty();
+  var elem = document.querySelector('#show_raty');
+  var opt = {
+    starOn: "<%= asset_path('star-on.png') %>",
+    starOff: "<%= asset_path('star-off.png') %>",
+    starHalf: "<%=asset_path('star-half.png') %>",
+    readOnly: true,
+    score: <%= @book.evaluation %>,
+    // scoreName: 'book[evaluation]' //登録するモデル名とカラム名を記述
+   };
+  raty(elem,opt);
+</script>

@@ -22,7 +22,7 @@
         <td>
           <%= link_to book.tags.map(&:name).join(', ') %> <!--配列になっているtagsを一つずつ取り出して表示する -->
         </td>
-        <td id="favorite_btn_<%= @book.id %>">
+        <td id="favorite_btn_<%= book.id %>">
           <%= render '/favorites/favorite', book: book %>
         </td>
         <td>

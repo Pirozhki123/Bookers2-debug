@@ -18,7 +18,7 @@ class Tag < ApplicationRecord
       @tags = Tag.all
     end
 
-    return @tags.inject(init = []) {|result, tag| result + tag.books}
+    return @tags.inject(init = []) {|result, tag| result + tag.books} #@booksの形に
 
   end
 

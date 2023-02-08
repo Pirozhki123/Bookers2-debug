@@ -4,7 +4,6 @@ class SearchesController < ApplicationController
   def search
     @range = params[:range]
     @word = params[:word]
-    # @content = params[:content]
 
     if @range == "User"
       @users = User.looks(params[:search], params[:word])
@@ -13,7 +12,6 @@ class SearchesController < ApplicationController
     else
       @books = Tag.looks(params[:search], params[:word])
     end
-    # render "/searches/search_result"
   end
 
 end

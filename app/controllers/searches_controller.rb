@@ -3,7 +3,7 @@ class SearchesController < ApplicationController
 
   def search
     @range = params[:range]
-    @word =params[:word]
+    @word = params[:word]
 
     if @range == "User"
       @users = User.looks(params[:search], params[:word])
@@ -12,4 +12,5 @@ class SearchesController < ApplicationController
     end
     render "/searches/search_result"
   end
+
 end

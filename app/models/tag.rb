@@ -4,4 +4,5 @@ class Tag < ApplicationRecord
 
   validates :name, presence: true #空白登録NG
   validates :name, uniqueness: true #重複登録NG
+
 end

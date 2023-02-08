@@ -14,7 +14,7 @@
         |<%= link_to '古い順', books_path(old: "true") %>
         |<%= link_to '評価の高い順', books_path(evaluation_count: "true") %>
       </p>
-      <%= render 'index', books: @books, favorite: @favorite, favorites: @favorites%>
+      <%= render 'index', books: @books, favorite: @favorite, favorites: @favorites %>
     </div>
   </div>
 </div>

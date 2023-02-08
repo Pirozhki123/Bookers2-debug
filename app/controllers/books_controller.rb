@@ -17,6 +17,7 @@ class BooksController < ApplicationController
     # @favorite = Favorite.new
     # @favorite_book = Favorite.find(params[:book_id])
     @book_comment = BookComment.new
+    @book_tags = @book.tags
     # ここから閲覧数用
     impressionist(@book, nil, unique: [:ip_address])
   end
@@ -40,7 +41,9 @@ class BooksController < ApplicationController
   def create
     @book = Book.new(book_params)
     @book.user_id = current_user.id
+    tag_list = params[:book][:name].delete(' ').delete('　').split(',') #送られたtag情報を「,」で区切ってスペースを削除
     if @book.save
+      @book.save_posts(tag_list) #save_postsメソッドを実行
       redirect_to book_path(@book), notice: "You have created book successfully."
     else
       @books = Book.all
@@ -50,11 +53,14 @@ class BooksController < ApplicationController
 
   def edit
     @book = Book.find(params[:id])
+    @tag_list = @book.tags.pluck(:tag_name).join(',')
   end
 
   def update
     @book = Book.find(params[:id])
+    tag_list = params[:book][:name].delete(' ').delete('　').split(',')
     if @book.update(book_params)
+      @book.save_posts(tag_list)
       redirect_to book_path(@book), notice: "You have updated book successfully."
     else
       render "edit"
@@ -63,7 +69,7 @@ class BooksController < ApplicationController
 
   def destroy
     @book = Book.find(params[:id])
-    @book.delete
+    @book.destroy
     redirect_to books_path
   end
 

@@ -19,7 +19,9 @@
           <td><%= @book.body %></td>
           <td>
             <% @book_tags.each do |tag| %>
-              <%= tag.name %><%= "(#{tag.books.count})" %>
+              <%= link_to tag.name do %>
+                <%= tag.name %><%= "(#{tag.books.count})" %>
+              <% end %>
             <% end %>
           </td>
           <td id="favorite_btn_<%= @book.id %>">
